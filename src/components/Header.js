@@ -16,6 +16,7 @@ const Header = () => {
         state : {cart},
         dispatch,
         productDispatch,
+        authDispatch
 } = CartState();
   return (
     <Navbar bg='dark' variant='dark' style={{height: 80}}>
@@ -80,6 +81,11 @@ const Header = () => {
                     </Dropdown.Menu>
                 </Dropdown>
             </Nav>
+            <Button 
+            onClick={() =>
+            authDispatch({
+                type: "LOG_OUT"
+            })}>Logout</Button>
         </Container>
     </Navbar>
   )

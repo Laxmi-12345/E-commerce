@@ -2,7 +2,7 @@ import React, { createContext, useContext, useReducer } from 'react';
 // import {faker} from '@faker-js/faker';
 import * as faker from 'faker';
 import cartReducer from './Reducers';
-import { productReducer } from './Reducers';
+import { productReducer, AuthReducer } from './Reducers';
 
 const cart = createContext(cartReducer);
 faker.seed(99);
@@ -28,10 +28,17 @@ const Context = ({ children }) => {
         byFastDelivery: false,
         byRating: 0,
         searchQuery: "",
-    })
+    });
+
+    const [authState, authDispatch] = useReducer(AuthReducer, {
+        usename:"",
+        password: "",
+        isLoggedIn: false,
+        loginError: false
+    });
 
   return (
-    <cart.Provider value={{state, dispatch, productState, productDispatch}}>
+    <cart.Provider value={{state, dispatch, productState, productDispatch, authState, authDispatch}}>
         {children}
     </cart.Provider>
   )

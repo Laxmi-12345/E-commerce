@@ -46,4 +46,38 @@ export const productReducer = (state, action) => {
     default:
       return state;
   }
+};
+
+export const AuthReducer = (state, action) =>{
+  console.log(state, action);
+  switch (action.type){
+    case "LOGIN_SUCCESS":
+      return{
+        ...state,
+        USERNAME: "",
+        PASSWORD: "",
+        isLoggedIn: true
+      }
+        case "LOGIN_ERROR":
+          return{
+            ...state,
+            loginError: "invalid",
+          }
+        case "LOG_OUT":
+          return{
+            ...state,
+            isLoggedIn: false,
+            loginError: false
+          }
+        case "USERNAME":
+        return{
+          ...state,
+          username: action.value
+        }
+        case "PASSWORD":
+          return{
+            ...state,
+            password: action.value
+          }
+  }
 }
